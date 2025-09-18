@@ -14,9 +14,7 @@ nmap -sS -p- 10.10.11.55 -T5
 
 Results:
 
-![image (1).png](Titanic%20Lab-Total%20time%203%20days%201df5b4e7124c809c99a5c47772d9dcc0/image_(1).png)
-
-[image](https://app.capacities.io/eb63b4f1-2b8f-411d-b0fe-a58b0d8c4b97/7cd73a4c-1f71-4960-91d2-28890cd5ab96)
+![image (1).png](./images/image_(1).png)
 
 I then ran port 80 scan to get more data on it
 
@@ -24,9 +22,8 @@ I then ran port 80 scan to get more data on it
 nmap -sV -p 80 10.10.11.55 -T5
 ```
 
-![image (2).png](Titanic%20Lab-Total%20time%203%20days%201df5b4e7124c809c99a5c47772d9dcc0/image_(2).png)
+![image (2).png](./images/image_(2).png)
 
-[image](https://app.capacities.io/eb63b4f1-2b8f-411d-b0fe-a58b0d8c4b97/c008bdfb-f899-45cb-bc70-a76272d55a04)
 
 I added the IP address to the host list
 
@@ -34,9 +31,8 @@ I added the IP address to the host list
 sudo nano /etc/hosts/
 ```
 
-![image (3).png](Titanic%20Lab-Total%20time%203%20days%201df5b4e7124c809c99a5c47772d9dcc0/image_(3).png)
+![image (3).png](./images/image_(3).png)
 
-[image](https://app.capacities.io/eb63b4f1-2b8f-411d-b0fe-a58b0d8c4b97/102ee87e-95da-4ab9-b3b0-d208fb114f78)
 
 after doing that i ran gobuster scan with common wordlist
 
@@ -44,15 +40,13 @@ after doing that i ran gobuster scan with common wordlist
 gobuster dir -u http://titanic.htb/ -w /usr/share/wordlists/dirb/common.txt
 ```
 
-![image (4).png](Titanic%20Lab-Total%20time%203%20days%201df5b4e7124c809c99a5c47772d9dcc0/image_(4).png)
+![image (4).png](./images/image_(4).png)
 
-[image](https://app.capacities.io/eb63b4f1-2b8f-411d-b0fe-a58b0d8c4b97/594cdd52-a4a8-4765-a508-c758d16c2478)
 
 I visited the website and clicked around, i booked the ticket while checking browser web developer network section and noticed the the address that redirects to the download
 
-![image (5).png](Titanic%20Lab-Total%20time%203%20days%201df5b4e7124c809c99a5c47772d9dcc0/image_(5).png)
+![image (5).png](./images/image_(5).png)
 
-[image](https://app.capacities.io/eb63b4f1-2b8f-411d-b0fe-a58b0d8c4b97/28cfde2c-54e3-4e78-9514-39b2e506e301)
 
 After numerous types of research I found something called LFI (Local File Intrusion)
 
@@ -62,9 +56,8 @@ I researched common commands used with it and I used #curl
 curl "http://titanic.htb/download?ticket=../../../../etc/passwd"
 ```
 
-![image (6).png](Titanic%20Lab-Total%20time%203%20days%201df5b4e7124c809c99a5c47772d9dcc0/image_(6).png)
+![image (6).png](./images/image_(6).png)
 
-[image](https://app.capacities.io/eb63b4f1-2b8f-411d-b0fe-a58b0d8c4b97/ced61489-2261-404b-a8cb-3c008c465f89)
 
 I recorded possible users like root, man, nobody, developer, _laurel
 
@@ -76,23 +69,20 @@ curl "http://titanic.htb/download?ticket=../../../../etc/hosts"
 
 Found a wildcard for the domain called dev.titanic.htb
 
-![image (7).png](Titanic%20Lab-Total%20time%203%20days%201df5b4e7124c809c99a5c47772d9dcc0/image_(7).png)
+![image (7).png](./images/image_(7).png)
 
-[image](https://app.capacities.io/eb63b4f1-2b8f-411d-b0fe-a58b0d8c4b97/4f4b51df-bd6b-42b2-92a8-f8450941db9f)
 
-![image (8).png](Titanic%20Lab-Total%20time%203%20days%201df5b4e7124c809c99a5c47772d9dcc0/image_(8).png)
+![image (8).png](./images/image_(8).png)
 
 I added the domain to the host list
 
-![image (9).png](Titanic%20Lab-Total%20time%203%20days%201df5b4e7124c809c99a5c47772d9dcc0/image_(9).png)
+![image (9).png](./images/image_(9).png)
 
-[image](https://app.capacities.io/eb63b4f1-2b8f-411d-b0fe-a58b0d8c4b97/e2f53f34-c393-48bc-9315-4fb7914858c9)
 
 And i ran gobuster again with the new domain added
 
-![image (10).png](Titanic%20Lab-Total%20time%203%20days%201df5b4e7124c809c99a5c47772d9dcc0/image_(10).png)
+![image (10).png](./images/image_(10).png)
 
-[image](https://app.capacities.io/eb63b4f1-2b8f-411d-b0fe-a58b0d8c4b97/fe7b86c3-442d-4896-bc56-592affc5420f)
 
 I used curl to get data from admin, developer, administrator
 
@@ -100,15 +90,13 @@ and research showed that they are using gitea to host the site and found their r
 
 Upon reviewing the repo I found they were using #MYSQLas database
 
-![image (11).png](Titanic%20Lab-Total%20time%203%20days%201df5b4e7124c809c99a5c47772d9dcc0/image_(11).png)
+![image (11).png](./images/image_(11).png)
 
-[image](https://app.capacities.io/eb63b4f1-2b8f-411d-b0fe-a58b0d8c4b97/30aa7b83-0b6b-4cf7-aecf-e432d96d24c6)
 
 and their password
 
-![image (12).png](Titanic%20Lab-Total%20time%203%20days%201df5b4e7124c809c99a5c47772d9dcc0/image_(12).png)
+![image (12).png](./images/image_(12).png)
 
-[image](https://app.capacities.io/eb63b4f1-2b8f-411d-b0fe-a58b0d8c4b97/3fc1406b-0595-4920-acdb-d93f3370c431)
 
 after researching how gitea sets up in a directory i tried with the previously recorded users which only developer worked.
 
@@ -125,9 +113,8 @@ sqlite3 gitea.db
 #once opened i ran.tables
 ```
 
-![image (13).png](Titanic%20Lab-Total%20time%203%20days%201df5b4e7124c809c99a5c47772d9dcc0/image_(13).png)
+![image (13).png](./images/image_(13).png)
 
-[image](https://app.capacities.io/eb63b4f1-2b8f-411d-b0fe-a58b0d8c4b97/9e02ce8d-43e4-49d8-a33a-6a7f2999c6c3)
 
 I researched how to traverse database and tried multiple commands until i found the working one related to users
 
@@ -137,9 +124,8 @@ SELECT * FROM user;
 
 This showed me the hashed credentials for users
 
-![image (14).png](Titanic%20Lab-Total%20time%203%20days%201df5b4e7124c809c99a5c47772d9dcc0/image_(14).png)
+![image (14).png](./images/image_(14).png)
 
-[image](https://app.capacities.io/eb63b4f1-2b8f-411d-b0fe-a58b0d8c4b97/bff8929f-5e55-4bc5-9a8e-3fd485ff95dc)
 
 Since we were working in developer i saved developer’s hash in a hash.txt file
 
@@ -151,25 +137,21 @@ hashcat -m 10900 -a 0 hash.txt /usr/share/wordlists/rockyou.txt --outfile cracke
 
 This process took around 2-3 hours I successfully got access to the password for developer
 
-![image (15).png](Titanic%20Lab-Total%20time%203%20days%201df5b4e7124c809c99a5c47772d9dcc0/image_(15).png)
+![image (15).png](./images/image_(15).png)
 
-[image](https://app.capacities.io/eb63b4f1-2b8f-411d-b0fe-a58b0d8c4b97/67523a9e-cbda-42cf-8bae-b7170ab0fa99)
 
 developer:25282528
 
-[image](https://app.capacities.io/eb63b4f1-2b8f-411d-b0fe-a58b0d8c4b97/e1f489fc-58c4-4fe1-a430-14ca56fa7fa5)
 
 using ls i found file named user.txt which contained the flag for user
 
-![image.png](Titanic%20Lab-Total%20time%203%20days%201df5b4e7124c809c99a5c47772d9dcc0/image.png)
+![image.png](./images/image.png)
 
-[image](https://app.capacities.io/eb63b4f1-2b8f-411d-b0fe-a58b0d8c4b97/5cf4515d-b889-458f-a7f8-7d90c62a2b26)
 
 After several minutes traversing around and looking around for root flag i found the root.txt file in tmp folder but i also figured out that developer did not have sudo power but in my search i found an interesting file that is running a script using magick, after investigating further I found out that Imagemagick was used to escalate privilages and did more research
 
-![image (16).png](Titanic%20Lab-Total%20time%203%20days%201df5b4e7124c809c99a5c47772d9dcc0/image_(16).png)
+![image (16).png](./images/image_(16).png)
 
-[image](https://app.capacities.io/eb63b4f1-2b8f-411d-b0fe-a58b0d8c4b97/8a0eafa8-458d-49c5-8279-62af18fe0d7e)
 
 Researching around i found a script that was used with magick i just modified the directories i needed
 
