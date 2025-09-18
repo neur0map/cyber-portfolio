@@ -1,0 +1,58 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Security - Never commit these
+*.key
+*.pem
+*.crt
+*.p12
+credentials.txt
+passwords.txt
+secrets/
+.env
+config.json
+
+# CTF/Lab specific
+*.ovpn
+vpn/
+flags.txt
+loot/
+*.pcap
+*.cap
+
+# Temporary files
+*.tmp
+*.log
+*.bak
+*.orig
