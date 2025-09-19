@@ -140,7 +140,7 @@ This process took around 2-3 hours I successfully got access to the password for
 ![image (15).png](./images/image_(15).png)
 
 
-developer:25282528
+developer:[REDACTED]
 
 
 using ls i found file named user.txt which contained the flag for user
@@ -186,4 +186,4 @@ Checking /etc/crontab (and possibly /etc/cron.*/*) helps confirm whether identif
 cat /tmp/root.txt
 ```
 
-root password : 2a523b982f4c3b11feb62d868bf67fb4
+Successfully obtained root flag

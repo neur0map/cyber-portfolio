@@ -76,14 +76,14 @@ hashcat -m 0 -a 0 hash.txt /usr/share/wordlists/rockyou.txt
 
 After getting the password I can try connecting to the ssh which it worked
 
-```sql
+```bash
 ssh svcMosh@underpass.htb
-password:underwaterfriends
+# Password: [REDACTED]
 ```
 
 ![image.png](./images/image%208.png)
 
-User flag was right there with ls and cat command
+Successfully obtained user flag
 
 Getting privilage escalation was difficult as always but extensive research i found a solution
 
@@ -103,6 +103,6 @@ this showed the mosh server id and port, which after researching i found an expl
 
 ![image.png](./images/image%209.png)
 
-after using the found exploit i was finally able to gain root and get the flag
+after using the found exploit i was finally able to gain root and obtain the root flag
 
 ![image.png](./images/image%2010.png)
